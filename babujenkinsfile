@@ -20,14 +20,14 @@ pipeline {
           }
     stage('Publish Test Reports') {
        steps {
-         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/InsureProject/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/InsuranceProject/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
              }
-          }
+           }
 
     stage('Create Image using the package') {
        steps {
          echo 'creating a docker image from the package'
-         sh 'docker build -t cbabu85/insure-me-03may:1.0 .'
+         sh 'docker build -t project/insureme-03may:1.0 .'
               }
            }
     stage('Docker Login') {
