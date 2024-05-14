@@ -27,7 +27,7 @@ pipeline {
     stage('Create Image using the package') {
        steps {
          echo 'creating a docker image from the package'
-         sh 'docker build -t project/insureme-03may:1.0 .'
+         sh 'docker build -t project/insureme-03may:latest .'
               }
            }
     stage('Docker Login') {
@@ -35,12 +35,12 @@ pipeline {
           echo 'Login to Docker hub to push the images'
           withCredentials([usernamePassword(credentialsId: 'Dockerlogin-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Dockerlogin')]) {
           sh 'docker login -u ${Dockerlogin} -p ${Dockerpassword}'
-                                                 }
+                                              }
                            }
               }
     stage('Push the Image') {
        steps {
-          sh 'docker push cbabu85/insure-me-app:5.0'
+          sh 'docker push project/insureme-03may:latest'
                             }
              }
     stage('Deploy using Ansible') {
